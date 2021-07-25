@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends \TCG\Voyager\Models\User
+
 {
     use HasFactory, Notifiable;
 
@@ -40,4 +41,14 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function getDefaultAddress()
+    {
+        return $this->addresses()->where($this->default, '=', true);
+    }
 }
