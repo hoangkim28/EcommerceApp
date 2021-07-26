@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2021 at 07:56 AM
+-- Generation Time: Jul 26, 2021 at 05:22 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -212,7 +212,19 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (30, 7, 'name', 'text', 'Tên danh mục', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"3\"}}', 3),
 (31, 7, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:categories,slug\"},\"display\":{\"width\":\"3\"}}', 4),
 (32, 7, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 5),
-(33, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6);
+(33, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(34, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(35, 8, 'category_id', 'select_dropdown', 'Category Id', 1, 0, 0, 0, 1, 0, '{}', 3),
+(36, 8, 'name', 'text', 'Tên', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"4\"},\"validation\":{\"rule\":\"required|max:100\",\"messages\":{\"required\":\":attribute kh\\u00f4ng \\u0111\\u01b0\\u1ee3c \\u0111\\u1ec3 tr\\u1ed1ng!\",\"max\":\"T\\u1ed1i \\u0111a :max. k\\u00fd t\\u1ef1!\"}}}', 4),
+(37, 8, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:products,slug\"},\"display\":{\"width\":\"4\"}}', 5),
+(38, 8, 'image', 'image', 'Ảnh đại diện', 1, 0, 1, 1, 1, 1, '{\"display\":{\"width\":\"3\"},\"quality\":\"100%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"27%\"}],\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"Vui l\\u00f2ng ch\\u1ecdn \\u1ea3nh \\u0111\\u1ea1i di\\u1ec7n!\"}}}', 6),
+(39, 8, 'more_image', 'multiple_images', 'Hình ảnh thêm', 0, 0, 1, 1, 1, 1, '{\"display\":{\"width\":\"9\"},\"quality\":\"90%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"27%\"}]}', 7),
+(40, 8, 'description', 'text_area', 'Giới thiệu sơ lượt', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:250\",\"messages\":{\"max\":\"T\\u1ed1i \\u0111a :max. k\\u00fd t\\u1ef1!\"}}}', 8),
+(41, 8, 'content', 'rich_text_box', 'Nội dung chính', 0, 0, 1, 1, 1, 1, '{}', 9),
+(42, 8, 'status', 'checkbox', 'Trạng thái', 1, 1, 1, 1, 1, 1, '{\"on\":\"Hi\\u1ec3n th\\u1ecb\",\"off\":\"\\u1ea8n\",\"checked\":\"on\",\"display\":{\"width\":\"3\"}}', 10),
+(43, 8, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 11),
+(44, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 12),
+(45, 8, 'product_hasone_category_relationship', 'relationship', 'Danh mục', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"4\"},\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"Tr\\u01b0\\u1eddng n\\u00e0y, :attribute kh\\u00f4ng \\u0111\\u01b0\\u1ee3c \\u0111\\u1ec3 tr\\u1ed1ng!\"}},\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 2);
 
 -- --------------------------------------------------------
 
@@ -248,7 +260,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-07-25 07:53:35', '2021-07-25 07:53:35'),
 (4, 'colors', 'colors', 'Màu sắc', 'Màu sắc', 'voyager-brush', 'App\\Models\\Color', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-25 22:09:43', '2021-07-25 22:50:14'),
 (5, 'sizes', 'sizes', 'Kích thước', 'Kích thước', 'voyager-archive', 'App\\Models\\Size', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-25 22:10:14', '2021-07-25 22:50:39'),
-(7, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-25 22:28:08', '2021-07-25 22:46:01');
+(7, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-25 22:28:08', '2021-07-25 22:46:01'),
+(8, 'products', 'products', 'Sản phẩm', 'Sản phẩm', 'voyager-bubble-hear', 'App\\Models\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"created_at\",\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"name\",\"scope\":null}', '2021-07-25 23:14:10', '2021-07-26 07:16:30');
 
 -- --------------------------------------------------------
 
@@ -313,7 +326,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (14, 1, 'Các thuộc tính', '', '_self', 'voyager-tag', '#000000', NULL, 4, '2021-07-25 22:18:47', '2021-07-25 22:32:00', NULL, ''),
 (15, 1, 'CMS', '', '_self', 'voyager-data', '#000000', NULL, 2, '2021-07-25 22:23:01', '2021-07-25 22:23:11', NULL, ''),
 (16, 1, 'Danh mục sản phẩm', '', '_self', 'voyager-categories', '#000000', 15, 1, '2021-07-25 22:28:08', '2021-07-25 22:29:20', 'voyager.categories.index', 'null'),
-(17, 1, 'Người dùng', '', '_self', 'voyager-people', '#000000', NULL, 3, '2021-07-25 22:30:14', '2021-07-25 22:30:24', NULL, '');
+(17, 1, 'Người dùng', '', '_self', 'voyager-people', '#000000', NULL, 3, '2021-07-25 22:30:14', '2021-07-25 22:30:24', NULL, ''),
+(18, 1, 'Sản phẩm', '', '_self', 'voyager-bubble-hear', '#000000', 15, 2, '2021-07-25 23:14:10', '2021-07-25 23:14:46', 'voyager.products.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -365,7 +379,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2021_07_25_051739_create_bill_details_table', 1),
 (32, '2021_07_25_051757_create_customers_table', 1),
 (33, '2021_07_25_051819_create_addresses_table', 1),
-(34, '2021_07_25_060916_create_coupons_table', 1);
+(34, '2021_07_25_060916_create_coupons_table', 1),
+(35, '2021_07_26_083039_chang_more_image_product', 2),
+(36, '2021_07_26_083039_change_more_image_product', 3);
 
 -- --------------------------------------------------------
 
@@ -471,7 +487,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (38, 'read_categories', 'categories', '2021-07-25 22:28:08', '2021-07-25 22:28:08'),
 (39, 'edit_categories', 'categories', '2021-07-25 22:28:08', '2021-07-25 22:28:08'),
 (40, 'add_categories', 'categories', '2021-07-25 22:28:08', '2021-07-25 22:28:08'),
-(41, 'delete_categories', 'categories', '2021-07-25 22:28:08', '2021-07-25 22:28:08');
+(41, 'delete_categories', 'categories', '2021-07-25 22:28:08', '2021-07-25 22:28:08'),
+(42, 'browse_products', 'products', '2021-07-25 23:14:10', '2021-07-25 23:14:10'),
+(43, 'read_products', 'products', '2021-07-25 23:14:10', '2021-07-25 23:14:10'),
+(44, 'edit_products', 'products', '2021-07-25 23:14:10', '2021-07-25 23:14:10'),
+(45, 'add_products', 'products', '2021-07-25 23:14:10', '2021-07-25 23:14:10'),
+(46, 'delete_products', 'products', '2021-07-25 23:14:10', '2021-07-25 23:14:10');
 
 -- --------------------------------------------------------
 
@@ -529,7 +550,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (38, 1),
 (39, 1),
 (40, 1),
-(41, 1);
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1);
 
 -- --------------------------------------------------------
 
@@ -543,13 +569,20 @@ CREATE TABLE `products` (
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `more_image` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `more_image` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `image`, `more_image`, `description`, `content`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Giày Thể Thao Nam Biti\'s Hunter Core Refreshing Collection Contras Black DSMH06700DEN (Đen)', 'giay-the-thao-nam-biti-s-hunter-core-refreshing-collection-contras-black-dsmh06700den-den', 'products\\July2021\\GOU78plXkfp48kwItIz3.jpg', '[\"products\\\\July2021\\\\FIhBklF60X4MQyj92VqO.jpg\",\"products\\\\July2021\\\\sRUu217b1YTxfygX1f7a.jpg\",\"products\\\\July2021\\\\SpsUxx75YuWX4nuOUoGN.jpg\",\"products\\\\July2021\\\\4p2Mzo5W3bEb0iEycwMe.jpg\",\"products\\\\July2021\\\\BXTUMC0L4eymFPRwJGZ7.jpg\"]', NULL, NULL, 1, '2021-07-25 23:41:24', '2021-07-26 01:22:05');
 
 -- --------------------------------------------------------
 
@@ -678,7 +711,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `gender`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'SuperAdmin', 'super@xomgiay.com', 'users/default.png', 1, NULL, '$2y$10$8JSfxZ2/D1k1.cc3aNtiWeUikXK/FC2IaCZduv7trxzQXltLiKddy', 'duzqEBXfKnrdYeOI39Sj5z4D8j8qfTVDTDHOu9AtNuyrpLML4iqv3Bf01ZXP', '{\"locale\":\"vi\"}', '2021-07-25 07:53:46', '2021-07-25 07:57:16');
+(1, 1, 'SuperAdmin', 'super@xomgiay.com', 'users/default.png', 1, NULL, '$2y$10$8JSfxZ2/D1k1.cc3aNtiWeUikXK/FC2IaCZduv7trxzQXltLiKddy', 'HFuxgAAelDiVoxXS47fo0gU4ztv23EtieRwQ55n2mEnjZyG67Ka311C9YSC7', '{\"locale\":\"vi\"}', '2021-07-25 07:53:46', '2021-07-25 07:57:16');
 
 -- --------------------------------------------------------
 
@@ -924,13 +957,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -942,13 +975,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -966,13 +999,13 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_skus`

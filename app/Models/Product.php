@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use TCG\Voyager\Traits\Translatable;
 
 class Product extends Model
 {
-    protected $table = 'products';
-    public $timestamps = true;
     use HasFactory;
+    use Translatable;
+
+    protected $translatable = ['slug', 'name'];
+    protected $fillable = ['slug', 'name'];
+    protected $table = 'products';
+    public $timestamps = true;    
 
     public function product_skus()
     {
-        return $this->hasMany(Voyager::modelClass('ProductSku'));
+        return $this->hasMany(ProductSku::class);
     }
 }
