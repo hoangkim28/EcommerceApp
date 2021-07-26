@@ -1,0 +1,29 @@
+.form-control{
+  color: black;    
+  font-weight: 500;
+}
+.control-label{
+  color: black;
+  font-size: 15pt;
+  font-weight: 500;
+}
+p{
+  color: black;
+  font-weight: 500;
+}
+td{
+  color: black;
+  font-weight: 500;
+}
+th{
+  font-weight: 500;
+}
+.table>tfoot>tr>th,
+.table>thead>tr>th {
+  font-weight: 500;
+  color: #000000;
+}
+.btn-link, .checkbox-inline, .checkbox label, .radio-inline, .radio label, label{
+  font-weight: 500;
+  color: #000000;
+}
