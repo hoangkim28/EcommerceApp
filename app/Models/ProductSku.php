@@ -11,13 +11,18 @@ class ProductSku extends Model
     public $timestamps = false;
     use HasFactory;
 
-    public function colors()
+    public function color()
     {
-      return $this->hasMany(Color::class);
+      return $this->belongsTo(Color::class,'color_id');
     }
 
-    public function sizes()
+    public function size()
     {
-      return $this->hasMany(Size::class);
+      return $this->belongsTo(Size::class,'size_id');
+    }
+
+    public function product()
+    {
+      return $this->belongsTo(Product::class,'product_id');
     }
 }

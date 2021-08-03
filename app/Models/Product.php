@@ -18,6 +18,11 @@ class Product extends Model
 
     public function product_skus()
     {
-        return $this->hasMany(ProductSku::class);
+        return $this->hasMany(ProductSku::class,'product_id');
+    }
+
+    public function category()
+    {
+      return $this->belongsTo(Category::class,'category_id');
     }
 }
