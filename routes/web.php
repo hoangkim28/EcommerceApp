@@ -23,8 +23,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin/'], function () {
     Voyager::routes();
-    Route::get('/products/{id}/sku', [ProductSkuController::class, 'show'])->name('product.productsku');
-
+    Route::get('products/{id}/sku', [ProductSkuController::class, 'show'])->name('product.productsku');
+    Route::post('products/sku/create', [ProductSkuController::class, 'store'])->name('product.productsku.store');
+    Route::put('products/sku/get/{id}', [ProductSkuController::class, 'get_sku'])->name('product.productsku.getsku');
 });
