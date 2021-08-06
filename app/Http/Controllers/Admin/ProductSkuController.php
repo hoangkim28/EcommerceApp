@@ -72,23 +72,19 @@ class ProductSkuController extends BaseController
         $sku->promotion_price = $request->promotion_price;
         $sku->default = $default;
 
-        $sku_list = ProductSku::where('product_id','=',$request->product_id);          
-        if($default == '1'){
-          $sku_list = $sku_list->where('default', 1)->get();
+        $sku_list = ProductSku::where('product_id','=',$request->product_id);        
+        $sku_list = $sku_list->where('default','=', 1)->get();  
+        if($default == '1' && $sku_list->count()){
           foreach($sku_list as $item){
             $item->default = 0;
             $item->save();
           }
-        }else{
-          $sku_default = $sku_list->first();
-          $sku_default->default = 1;
-          $sku_default->save();
         }
         $sku->save();
         $sku_list = ProductSku::where('product_id','=',$request->product_id);
-        $sku_default_list = $sku_list->where('default', 1);
-        if(!$sku_default_list->count()){
-          $sku_default = $sku_list->first();
+        $sku_default_list = $sku_list->where('default','=', 1);
+        if($sku_default_list->count() == 0){
+          $sku_default = ProductSku::first();
           $sku_default->default = 1;
           $sku_default->save();
         }
