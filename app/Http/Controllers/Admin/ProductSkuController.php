@@ -60,10 +60,7 @@ class ProductSkuController extends BaseController
         if (!$sku) {
           $sku = new ProductSku();
         }
-        $default = 0;
-        if($request->default = '1'){
-          $default = 1;
-        }
+        $default = $request->default;
         $sku->product_id = $request->product_id;
         $sku->color_id = $request->color_id;
         $sku->size_id = $request->size_id;
@@ -72,21 +69,27 @@ class ProductSkuController extends BaseController
         $sku->promotion_price = $request->promotion_price;
         $sku->default = $default;
 
-        $sku_list = ProductSku::where('product_id','=',$request->product_id);        
-        $sku_list = $sku_list->where('default','=', 1)->get();  
-        if($default == '1' && $sku_list->count()){
-          foreach($sku_list as $item){
-            $item->default = 0;
-            $item->save();
+        $sku_list = ProductSku::where('product_id','=',$sku->product_id);
+        if($default == 1){
+          $sku_list = $sku_list->where('default','=', 1)->where('id','!=',$sku->id)->get();
+          if($sku_list->count() >= 1){              
+            foreach($sku_list as $sku_item){
+              $sku_item->update(['default' => 0]);
+            }
           }
+          $sku->save();
         }
-        $sku->save();
-        $sku_list = ProductSku::where('product_id','=',$request->product_id);
-        $sku_default_list = $sku_list->where('default','=', 1);
-        if($sku_default_list->count() == 0){
-          $sku_default = ProductSku::first();
-          $sku_default->default = 1;
-          $sku_default->save();
+        //default = 0
+        else{
+          $sku_list = $sku_list->where('default','=', 1)->where('id','!=',$sku->id);
+          if($sku_list->count() >= 1){
+            foreach($sku_list as $sku_item){
+              $sku_item->update(['default' => 1]);
+            }
+          }else{
+            $sku->default = 1;
+          }
+          $sku->save();
         }
         return redirect()->back()->with([
             'message' => "Thêm mới sản phẩm con thành công!",
