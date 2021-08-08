@@ -28,4 +28,6 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::get('products/{id}/sku', [ProductSkuController::class, 'show'])->name('product.productsku');
     Route::post('products/sku/create', [ProductSkuController::class, 'store'])->name('product.productsku.store');
     Route::put('products/sku/get/{id}', [ProductSkuController::class, 'get_sku'])->name('product.productsku.getsku');
+    Route::post('products/sku/delete', [ProductSkuController::class, 'delete_sku'])->name('product.productsku.deletesku');
+
 });

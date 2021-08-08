@@ -59,14 +59,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($skus as $key => $sku)
+                @forelse($skus as $key => $sku)
                 <tr title="Nhấn để chỉnh sửa!" class="tr-edit" data-id="{{$sku->id}}">
                   <td class="text-center" @if($sku->default) style="background-color:#2ecc71;" @endif>{{$sku->color->name}} - {{$sku->size->name}}</td>
                   <td class="text-center">{{$sku->quantity}}</td>
                   <td class="text-right">{{number_format($sku->price)}}đ</td>
                   <td class="text-right">@if($sku->promotion_price){{number_format($sku->promotion_price). "đ"}}@endif</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr></tr>
+                @endforelse
               </tbody>
             </table>
           </div>
@@ -74,7 +76,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="panel panel-bordered hidden @if (count($errors) > 0) block @endif" id="add-edit-panel">
+      <div class="panel panel-bordered hidden @if (count($errors) > 0) block @endif @if(Session::has('edit')) block @endif" id="add-edit-panel">
         <div class="panel-heading">
           <h3 class="panel-title text-uppercase" id="text_panel">Thêm</h3>
           <div class="panel-actions">
@@ -164,33 +166,44 @@
 
 @section('javascript')
 <script>
-  function set_form(res){
-      console.log(res);
-  }
   $('document').ready(function() {
     $('.toggleswitch').bootstrapToggle();
     $('[data-toggle="tooltip"]').tooltip();
     $('#btn_add_new_sku').on('click', function(e) {
       e.preventDefault();
-      if($('.form-edit-add').parent().hasClass("hidden")){
-        $(this).removeClass('btn-success');
-        $(this).addClass('btn-danger');
-        $('#ico_add_new_sku').removeClass('voyager-plus');
-        $('#ico_add_new_sku').addClass('voyager-trash');
-        $('#text_add_new_sku').text('Hủy thêm');
-        $('.form-edit-add').removeClass('add');
-        $('.form-edit-add').parent().removeClass('hidden');
-      }else{
-        $(this).removeClass('btn-danger');
-        $(this).addClass('btn-success');
-        $('#ico_add_new_sku').removeClass('voyager-trash');
-        $('#ico_add_new_sku').addClass('voyager-plus');
-        $('#text_add_new_sku').text('Thêm mới');
-        $('.form-edit-add').addClass('add');
-        $('.form-edit-add').parent().addClass('hidden');
-      };
+      $('.form-edit-add').removeClass('add');
+      $('.form-edit-add').parent().removeClass('hidden');
+      $(this).addClass('hidden');      
+      $('.cancel').removeClass('hidden');
       $('#sku_id').val('');
-      $('#text_panel').text('Thêm mới');      
+    });
+    //delete
+    $('.delete').on('click', function(e) {
+      e.preventDefault();
+      let id = $('#sku_id').val();
+      $.ajax({
+        type: "post",
+        url: '/admin/products/sku/delete',
+        dataType: "json",
+        data: {
+            "id": id,
+            _token: '{{ csrf_token() }}',
+        },
+        success: function (response) {
+          if(response == 200){
+            window.setTimeout(function(){location.reload()},1000)
+            toastr.success("Thành công!");
+          }
+          else{
+            toastr.info("Lỗi! Đang có giỏ hàng chứa thông tin sản phẩm này!");
+          }
+        },
+      }); 
+    });
+    //cancel button
+    $('.cancel').on('click', function() {
+      $('#btn_add_new_sku').removeClass('hidden');
+      $('.form-edit-add').parent().addClass('hidden');
     });
     $('.tr-edit').on('click', function() {
       let taget = $(this);

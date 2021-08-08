@@ -6,8 +6,10 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductSku;
 use App\Models\Size;
+use App\Models\OrderDetail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\SkuRequest;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use TCG\Voyager\Facades\Voyager;
 
@@ -56,10 +58,27 @@ class ProductSkuController extends BaseController
         // Check permission
         $this->authorize('browse', app($dataType->model_name));
 
+        $message_notify = "Cập nhật thành công!";
+
+        $duplicate_check = ProductSku::where(
+            ['product_id' => $request->product_id],
+            ['color_id' => $request->color_id],
+            ['size_id' => $request->size_id])
+          ->first();
+          
         $sku = ProductSku::find($request->sku_id);
+        if($duplicate_check && $request->sku_id == null){
+          return redirect()->back()->with([
+            'message' => "Sản phẩm này đã tồn tại!",
+            'alert-type' => 'info',
+            'edit' => 'edit',
+          ]);
+        }
+        
         if (!$sku) {
           $sku = new ProductSku();
-        }
+          $message_notify = "Thêm thành công!";
+        } 
         $default = $request->default;
         $sku->product_id = $request->product_id;
         $sku->color_id = $request->color_id;
@@ -77,7 +96,6 @@ class ProductSkuController extends BaseController
               $sku_item->update(['default' => 0]);
             }
           }
-          $sku->save();
         }
         //default = 0
         else{
@@ -89,11 +107,36 @@ class ProductSkuController extends BaseController
           }else{
             $sku->default = 1;
           }
-          $sku->save();
         }
+        $sku->save();
         return redirect()->back()->with([
-            'message' => "Thêm mới sản phẩm con thành công!",
+            'message' => $message_notify,
             'alert-type' => 'success',
         ]);
+    }
+
+    public function delete_sku(Request $request)
+    {
+      $status = 0;
+      $slug = 'products';
+      $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+      // Check permission
+      $this->authorize('edit', app($dataType->model_name));
+      $id = request()->get('id');
+      $sku = ProductSku::find($id);
+      $order_check = OrderDetail::where('sku_id','=',$id);
+      if(!$order_check->count()){
+        if($sku->default == 1){
+          $default_sku = ProductSku::where('product_id','=',$sku->product_id)->first();
+          if($default_sku){
+            $default_sku->default = 1;
+            $default_sku->save();
+          }
+        }
+        return 200;
+      }else{
+        $status = $order_check;
+        return 400;
+      }
     }
 }
