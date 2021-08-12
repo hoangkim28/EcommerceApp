@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
+                    <h4>{{ __('voyager::generic.are_you_sure_delete') }}</h4>
                 </div>
 
                 <div class="modal-footer">
@@ -170,8 +170,6 @@
                 multi: isMulti,
                 _token: '{{ csrf_token() }}'
             }
-
-            $('.confirm_delete_name').text(params.filename);
             $('#confirm_delete_modal').modal('show');
           };
         }
