@@ -17,3 +17,12 @@
   border: 1em solid transparent;
   border-left-color: #ffffff;
 }
+
+  input:invalid, textarea:invalid, select:invalid {
+     box-shadow: none;
+ }
+ 
+ [x-cloak] {
+     display: none;
+ }
+ 
