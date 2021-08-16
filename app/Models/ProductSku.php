@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSku extends Model
 {
     protected $table = 'product_skus';
-    protected $fillable = ['default'];
+    protected $fillable = ['default','price','promotion_price'];
     public $timestamps = false;
     use HasFactory;
+    public function price()
+    {
+      $this->price;
+    }
 
     public function color()
     {

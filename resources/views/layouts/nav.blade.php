@@ -1,26 +1,57 @@
-<header class="border-b border-palette-lighter sticky top-0 z-20 bg-white">
-  <div class="flex items-center justify-between mx-auto max-w-6xl px-6 pb-2 pt-4 md:pt-6"><a class=" cursor-pointer"
+<header class="border-b border-palette-lighter sticky top-0 z-20 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+  <div class="flex items-center justify-between mx-auto max-w-6xl px-6 pb-2 pt-3 md:pt-4">
+    <a class=" cursor-pointer"
       href="/">
       <h1 class="flex no-underline">
-        <img height="32" width="32" alt="logo" 
+        <img alt="logo" 
           class="h-8 w-8 mr-1 object-contain"
-          src="/icon.svg">
-      <span class="text-xl font-primary font-bold tracking-tight pt-1">
+          src="{{voyager::image(setting('site.logo'))}}">
+      <span class="text-xl text-white font-primary font-bold tracking-tight pt-1">
+        {{setting('site.title')}}</span>
+    </h1>
+    </a>
+    <a class=" cursor-pointer"
+      href="/">
+      <h1 class="flex no-underline">
+      <span class="text-xl text-white font-primary font-bold tracking-tight pt-1">
         {{setting('site.title')}}</span>
     </h1>
     </a>
     <div>
-      <a class=" relative" aria-label="cart" href="/cart"><svg aria-hidden="true" focusable="false" data-prefix="fas"
-          data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18 text-palette-primary w-6 m-auto"
-          role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-          <path fill="currentColor"
-            d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z">
-          </path>
+      <a class=" relative" aria-label="cart" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" class="svg-inline--fa fa-shopping-cart fa-w-18 text-palette-primary w-6 m-auto" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
         </svg>
         <div
           class="absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3">
           1</div>
       </a>
     </div>
+    <div class="absolute top-0 right-0 mt-4 mr-4">
+            @if (Route::has('login'))
+                <div class="space-x-4">
+                    @auth
+                        <a
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+                        >
+                            Log out
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+        </div>
   </div>
+  
 </header>

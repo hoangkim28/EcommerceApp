@@ -25,4 +25,34 @@ class Product extends Model
     {
       return $this->belongsTo(Category::class,'category_id');
     }
+
+    public function product_skus_default()
+    {
+      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1) : $this->product_skus->first();
+      if(!$default){
+        $price = "#";
+      }
+      foreach($default as $sku)
+      {
+        $price = number_format($sku->price);
+        if($sku->promotion_price){
+          $price = number_format($sku->promotion_price);
+        }
+      }
+      return $price;
+    }
+    public function product_skus_default_promotion()
+    {
+      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1) : $this->product_skus->first();
+      if(!$default){
+        return false;
+      }
+      foreach($default as $sku)
+      {
+        if($sku->promotion_price){
+          return true;
+        }
+      }
+      return false;
+    }
 }
