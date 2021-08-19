@@ -6,4 +6,4 @@
     </path>
   </svg> by
   <!-- --> <a href="https://twitter.com/deepwhitman" target="_blank" rel="noreferrer"
-    class="text-palette-primary font-bold px-1">Bilal Tahir</a></footer>
+    class="text-black font-bold px-1">Ngô Xuân Huy</a></footer>

@@ -1,11 +1,15 @@
 @extends('layouts.base')
 
 @section('body')
-    <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-        @yield('content')
-
-        @isset($slot)
-            {{ $slot }}
-        @endisset
+@include('layouts.nav')
+<main>
+  <div class="mx-auto max-w-6xl">
+    <div class="py-12 max-w-6xl mx-auto">
+    @yield('content')
     </div>
+  </div>
+</main>
+@isset($slot)
+{{ $slot }}
+@endisset
 @endsection
