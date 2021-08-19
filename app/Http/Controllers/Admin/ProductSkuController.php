@@ -61,10 +61,8 @@ class ProductSkuController extends BaseController
         $message_notify = "Cập nhật thành công!";
 
         $duplicate_check = ProductSku::where(
-            ['product_id' => $request->product_id],
-            ['color_id' => $request->color_id],
-            ['size_id' => $request->size_id])
-          ->first();
+          'product_id',$request->product_id)->where('color_id',$request->color_id)
+          ->where('size_id',$request->size_id)->first();
           
         $sku = ProductSku::find($request->sku_id);
         if($duplicate_check && $request->sku_id == null){
