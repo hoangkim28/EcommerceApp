@@ -21,6 +21,14 @@ class Product extends Model
         return $this->hasMany(ProductSku::class,'product_id')->orderBy('color_id', 'desc')->orderBy('size_id', 'asc');
     }
 
+    public function group()
+    {
+      $collection = ProductSku::where('product_id',$this->id)->groupBy('color_id')
+      ->selectRaw('count(*) as total, color_id')
+      ->get();
+      return $collection;
+    }
+
     public function category()
     {
       return $this->belongsTo(Category::class,'category_id');
@@ -28,31 +36,26 @@ class Product extends Model
 
     public function product_skus_default()
     {
-      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1) : $this->product_skus->first();
+      $default = $this->product_skus->where('default',1)->first() ? $this->product_skus->where('default',1)->first() : $this->product_skus->first();
       if(!$default){
         $price = "#";
       }
-      foreach($default as $sku)
-      {
-        $price = number_format($sku->price);
-        if($sku->promotion_price){
-          $price = number_format($sku->promotion_price);
-        }
+      $price = number_format($default->price);
+      if($default->promotion_price){
+        $price = number_format($default->promotion_price);
       }
       return $price;
     }
-    public function product_skus_default_promotion()
+
+    public function product_promotion_price()
     {
-      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1) : $this->product_skus->first();
-      if(!$default){
-        return false;
-      }
-      foreach($default as $sku)
-      {
-        if($sku->promotion_price){
-          return true;
-        }
-      }
-      return false;
+      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1)->first() : $this->product_skus->first();
+      return number_format($default->promotion_price);
+    }
+
+    public function product_price()
+    {
+      $default = $this->product_skus->where('default',1) ? $this->product_skus->where('default',1)->first() : $this->product_skus->first();
+      return number_format($default->price);
     }
 }
