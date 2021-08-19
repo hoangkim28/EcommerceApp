@@ -8,8 +8,9 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
-use App\Http\Controllers\Admin\ProductSkuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductSkuController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -57,10 +58,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'admin/'], function () {
-  Voyager::routes();
-  Route::get('products/{id}/sku', [ProductSkuController::class, 'show'])->name('product.productsku');
-  Route::post('products/sku/create', [ProductSkuController::class, 'store'])->name('product.productsku.store');
-  Route::put('products/sku/get/{id}', [ProductSkuController::class, 'get_sku'])->name('product.productsku.getsku');
-  Route::post('products/sku/delete', [ProductSkuController::class, 'delete_sku'])->name('product.productsku.deletesku');
+    Voyager::routes();
+    //Product sku
+    Route::get('products/{id}/sku', [ProductSkuController::class, 'show'])
+        ->name('product.productsku');
+    Route::post('products/sku/create', [ProductSkuController::class, 'store'])
+        ->name('product.productsku.store');
+    Route::put('products/sku/get/{id}', [ProductSkuController::class, 'get_sku'])
+        ->name('product.productsku.getsku');
+    Route::post('products/sku/delete', [ProductSkuController::class, 'delete_sku'])
+        ->name('product.productsku.deletesku');
 
 });
