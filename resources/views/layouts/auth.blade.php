@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('body')
-@include('layouts.nav')
+<x-header></x-header>
 <main>
   <div class="mx-auto max-w-6xl">
     <div class="py-12 max-w-6xl mx-auto">
