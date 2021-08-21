@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductSkuController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Livewire\ProductDetail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,3 +72,5 @@ Route::group(['prefix' => 'admin/'], function () {
         ->name('product.productsku.deletesku');
 
 });
+
+Route::get('/product/{slug}', ProductDetail::class)->name('product.detail');
