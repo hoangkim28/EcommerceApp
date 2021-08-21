@@ -27,7 +27,6 @@ class ProductDetail extends Component
     {
         $data = Product::where('slug', $slug)->first();
         $this->product = $data;
-        $this->product_sku = ProductSku::where('product_id', $data->id)->orderBy('size_id', 'asc')->get();
 
         $default = $data->product_skus->where('default', 1)->first()
         ? $data->product_skus->where('default', 1)->first()
@@ -38,7 +37,7 @@ class ProductDetail extends Component
         $this->promotion_price = $default->promotion_price;
         $this->quantity = $default->quantity;
         $this->product_cart_quantity = 1;
-        $this->getSku();
+        $this->product_sku = ProductSku::where('product_id', $data->id)->where('color_id', $this->color_id)->orderBy('size_id', 'asc')->get();
 
     }
 
