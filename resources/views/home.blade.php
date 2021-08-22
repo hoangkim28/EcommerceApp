@@ -33,7 +33,7 @@
             {{$product->category->name}}
           </div>
           <div
-            class="text-palette-dark font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter rounded-tl-sm triangle transform duration-500 ease-in-out hover:scale-125">
+            class="text-red-500 font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter rounded-tl-sm triangle transform duration-500 ease-in-out hover:scale-125">
             <span class="text-lg">
               {{$product->product_skus_default()}}đ
             </span>
