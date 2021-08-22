@@ -2,6 +2,7 @@
 
 @section('body')
   <div id="app" class="flex flex-col justify-center min-h-screen">
+    <x-topbar></x-topbar>
     <x-header></x-header>
     @yield('content')
   
