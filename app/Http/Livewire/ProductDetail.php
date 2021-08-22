@@ -10,6 +10,7 @@ class ProductDetail extends Component
 {
     public $product;
     public $product_sku;
+    public $related_product;
 
     public $size_id, $color_id;
 
@@ -27,7 +28,8 @@ class ProductDetail extends Component
     {
         $data = Product::where('slug', $slug)->first();
         $this->product = $data;
-
+        $this->related_product = Product::where('category_id',$data->category_id)
+        ->orderBy('updated_at', 'asc')->take(4)->get();
         $default = $data->product_skus->where('default', 1)->first()
         ? $data->product_skus->where('default', 1)->first()
         : $data->product_skus->first();

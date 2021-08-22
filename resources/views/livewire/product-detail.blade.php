@@ -30,21 +30,13 @@
         </div>
         @endif
       </div>
-      <div class="flex flex-col justify-between h-full w-full md:w-1/2 max-w-xs mx-auto space-y-4 min-h-128"><a
-          aria-label="back-to-products"
-          class="border border-black text-black text-lg font-primary font-semibold pt-2 pb-1 leading-relaxed flex  justify-center items-center focus:ring-1 focus:ring-palette-primary focus:outline-none w-full hover:bg-palette-lighter hover:border-palette-primary rounded-sm"
-          href="{{str_replace(url('/'), '', url()->previous())}}"><svg aria-hidden="true" focusable="false"
-            data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 w-4 mr-2 inline-flex"
-            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path fill="currentColor"
-              d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z">
-            </path>
-          </svg>Quay lại</a>
+      <div class="flex flex-col justify-between h-full w-full md:w-1/2 max-w-xs mx-auto space-y-4 min-h-128">
         <div class=" font-primary">
+          <a class="text-black text-xl font-primary font-semibold leading-relaxed"
+            href="/">{{$product->category->name}}</a>
           <h1 class="leading-relaxed font-extrabold text-2xl text-black py-2 sm:py-4">
             {{$product->name}}
           </h1>
-          <p class="font-medium text-lg">{{$product->description}}</p>
           <div class="text-xl text-black font-medium py-4 px-1">
             <span
               class="@if($promotion_price) line-through text-xl text-gray-500 @else text-palette-dark text-2xl @endif ">
@@ -141,9 +133,8 @@
           </button>
         </div>
       </div>
-      <div class="hidden md:block">
-      </div>
     </div>
+    
     <div class="max-w-6xl mx-14 mt-6 border md:mx-auto w-8/12">
       @if($product->content)
       <div class="pl-2 font-primary">
@@ -157,4 +148,36 @@
       @endif
     </div>
   </div>
+  <div class="py-6 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+      @foreach($related_product as $product)
+      <a class="h-120 w-64 rounded shadow-lg mx-auto border border-palette-lighter" href="{{route('product.detail',$product->slug)}}">
+        <div class="h-64 border-b-2 border-palette-lighter relative">
+          <div
+            style="display:block;overflow:hidden;position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;margin:0">
+            <img alt="test-text"
+              src="{{voyager::image($product->image)}}"
+              decoding="async" class="transform duration-500 ease-in-out hover:scale-110"
+              style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%"
+              sizes="100vw"
+              srcset="{{voyager::image($product->image)}}">
+          </div>
+        </div>
+        <div class="h-48 relative">
+          <div class="font-primary text-black text-xl pt-4 px-4 font-semibold line-clamp-4">
+            {{$product->name}}
+          </div>
+          <div class="text-lg text-gray-600 p-4 font-primary font-light">
+            {{$product->category->name}}
+          </div>
+          <div
+            class="text-palette-dark font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter rounded-tl-sm triangle transform duration-500 ease-in-out hover:scale-125">
+            <span class="text-lg">
+              {{$product->product_skus_default()}}đ
+            </span>
+          </div>
+        </div>
+      </a>
+      @endforeach
+      
+    </div>
 </main>
