@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('status', 1)
+                    ->orderBy('updated_at', 'desc')
+                    ->take(8)->get();
         return view('home',compact('products'));
     }
 }

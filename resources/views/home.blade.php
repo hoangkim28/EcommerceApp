@@ -2,7 +2,7 @@
 
 @section('content')
 <main>
-  <div class="mx-auto max-w-6xl">
+  <div class="mx-auto max-w-7xl">
     <div class="">
       <h1
         class="leading-relaxed font-primary font-extrabold text-4xl text-center text-black mt-4 py-2 sm:py-4">
@@ -11,9 +11,9 @@
         Uy tín và chất lượng!
       </p>
     </div>
-    <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+    <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
       @foreach($products as $product)
-      <a class="h-120 w-72 rounded shadow-lg mx-auto border border-palette-lighter" href="{{route('product.detail',$product->slug)}}">
+      <a class="h-120 w-64 rounded shadow-lg mx-auto border border-palette-lighter" href="{{route('product.detail',$product->slug)}}">
         <div class="h-72 border-b-2 border-palette-lighter relative">
           <div
             style="display:block;overflow:hidden;position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;margin:0">
