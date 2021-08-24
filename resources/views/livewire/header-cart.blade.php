@@ -65,7 +65,7 @@
           </div>
           @endforeach
         </div>        
-        Tổng đơn hàng: {{$cartTotalPrice}}đ
+        <div class="font-semibold text-xl pl-2 justify-center">Tổng đơn hàng: {{$cartTotalPrice}}đ</div>
         @endif
         <div class="relative"></div>
 
