@@ -1,4 +1,4 @@
-<div class="bg-white hidden sm:flex items-center rounded-none">
+<div class="bg-white hidden sm:flex items-center rounded-none max-w-xs">
   <input wire:model="keyword" value="{{$keyword}}" wire:change="search()" class="h-12 w-full px-8 text-black leading-tight border-2 focus:border-2 focus:border-white border-black rounded-none" id="search" type="text"
     placeholder="Từ khóa...">
   <button
