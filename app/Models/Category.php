@@ -27,6 +27,10 @@ class Category extends Model
     {
         return $this->belongsTo(self::class);
     }
+
+    public function children() {
+      return $this->hasMany(self::class, 'parent_id')->where('status',1);
+    }
     
     public function subproducts()
     {

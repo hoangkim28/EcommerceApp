@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductSkuController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Livewire\ProductCategory;
 use App\Http\Livewire\ProductDetail;
 use App\Http\Livewire\Cart;
 
@@ -74,5 +75,6 @@ Route::group(['prefix' => 'admin/'], function () {
 
 });
 
+Route::get('/c/{slug}', ProductCategory::class)->name('product.category');
 Route::get('/product/{slug}', ProductDetail::class)->name('product.detail');
 Route::get('/cart', Cart::class)->name('cart.index');
