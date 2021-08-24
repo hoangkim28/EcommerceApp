@@ -13,9 +13,6 @@
         <!-- Favicon -->
 		    <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
         <!-- Styles -->
         <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
         @livewireStyles
@@ -31,8 +28,9 @@
         @yield('body')
 
         @livewireScripts
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+        <script src="{{ asset('js/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{ asset('js/sweetalert2.min.js')}}"></script>
         <x-livewire-alert::scripts />
         @yield('scripts')
     </body>
