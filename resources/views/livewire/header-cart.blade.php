@@ -53,7 +53,7 @@
         <div class="flex flex-col items-center justify-start h-auto max-h-72 w-full text-black font-medium overflow-auto" style="scroll-behavior: smooth;">
           @foreach($cartContent as $cartItem)
           <div class="p-2">
-            <a href="" class="inline-flex font-normal space-x-1">
+            <a href="{{route('product.detail',$cartItem->options->slug)}}" class="inline-flex font-normal space-x-1">
               <img class="object-cover object-center w-20 h-auto rounded-sm" src="{{voyager::image($cartItem->options->image)}}"
                 alt="">
               <span class="font-primary text-sm">{{$cartItem->name}} <br>
