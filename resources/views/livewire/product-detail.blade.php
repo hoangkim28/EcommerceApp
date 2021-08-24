@@ -138,7 +138,7 @@
       </div>
     </div>
 
-    <div class="max-w-6xl mx-2 px-6 mt-6 pb-4 border md:mx-16 w-full md:w-8/12">
+    <div class="max-w-6xl mx-auto px-2 mt-6 pb-4 border w-72 sm:w-96 md:w-8/12">
       @if($product->content)
       <div class="pl-2 font-primary">
         <h1 class="leading-relaxed font-extrabold text-2xl text-black py-2 sm:py-4">
