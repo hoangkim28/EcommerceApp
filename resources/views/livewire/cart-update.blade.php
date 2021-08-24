@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row space-x-2 justify-center items-center">
+<div class="flex flex-col-reverse md:flex-row space-x-0 md:space-x-2 justify-center items-center">
   <button wire:click="minus" class="rounded-full bg-gray-200 cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
