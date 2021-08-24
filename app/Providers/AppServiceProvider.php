@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
       view()->composer(['components.header'], function ($toView){
-        $categories = Category::where('status',1)->orderBy('order', 'asc')->get();
+        $categories = Category::where('parent_id', null)->where('status',1)->orderBy('order', 'asc')->get();
         $toView->with('categories', $categories);
       });
 

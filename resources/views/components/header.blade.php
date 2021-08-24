@@ -1,16 +1,16 @@
 <header class="border-b border-gray-200 sticky top-0 z-20 bg-white space-x-6 ">
   <div class="flex items-center justify-between mx-auto max-w-6xl px-6 pb-2 pt-3 md:pt-4">
     <a class=" cursor-pointer" href="/">
-      <h1 class="flex no-underline">
-        <img alt="logo" class="h-8 w-8 mr-1 object-contain" src="{{voyager::image(setting('site.logo'))}}">
-        <span class="text-xl text-black font-primary font-bold tracking-tight pt-1">
+      <h1 class="flex no-underline mr-2">
+        <img alt="logo" class="h-10 w-10 mr-1 object-contain" src="{{voyager::image(setting('site.logo'))}}">
+        <span class="text-xl lg:text-2xl text-black font-primary font-bold tracking-tight pt-1 hidden lg:block">
           {{setting('site.title')}}</span>
       </h1>
     </a>
     @if($categories)
     <div class="space-x-6 hidden md:inline-flex">
-      @foreach($categories as $category)
-      @if($category->parent_id)
+      @foreach($categories as $key => $category)
+      @if($category->children->count())
       <div x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown=false"
         @click.away="dropdown=false"
         class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
@@ -29,7 +29,7 @@
           <div class="border border-gray-100 shadow-md rounded-xl">
             <div class="overflow-hidden shadow-xs rounded-xl">
               <div class="relative z-20 grid gap-6 px-5 py-6 bg-white sm:p-8 sm:gap-8">
-                @if($category->children)
+                
                   @foreach($category->children as $children)
                   <a href="{{route('product.category',$children->slug)}}"
                     class="block px-5 py-3 -m-3 space-y-1 transition duration-150 ease-in-out hover:border-blue-500 hover:border-l-2 rounded-xl hover:bg-gray-100">
@@ -38,7 +38,7 @@
                     </p>
                   </a>
                   @endforeach
-                @endif
+                  
               </div>
             </div>
           </div>
@@ -48,6 +48,9 @@
       <a href="{{route('product.category',$category->slug)}}" class="inline-flex items-center px-1 pt-1 font-primary text-lg leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
         {{$category->name}}
       </a>
+      @endif
+      @if($key == 4)
+      @break
       @endif
       @endforeach
     </div>
