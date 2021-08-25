@@ -28,6 +28,9 @@ class ProductDetail extends Component
     public function mount($slug)
     {
         $data = Product::where('slug', $slug)->first();
+        if(!$data){
+          abort('404');
+        }
         $this->product = $data;
         $this->related_product = Product::where('category_id', $data->category_id)
             ->orderBy('updated_at', 'asc')->take(4)->get();

@@ -22,8 +22,12 @@ class ProductCategory extends Component
     {
         $category = Category::where('slug', $this->slug)->where('status', 1)->first();
 
+        if(!$category){
+          abort('404');
+        }
+
         $this->category = $category;
-        $product_data = Product::where('category_id', $category->id)->where('status', 1)->paginate(3);
+        $product_data = Product::where('category_id', $category->id)->where('status', 1)->paginate(12);
     
         return view('livewire.product-category',['products'=>$product_data]);
     }
@@ -31,12 +35,5 @@ class ProductCategory extends Component
     public function mount($slug)
     {
       $this->slug= $slug;
-        // $category = Category::where('slug', $slug)->where('status', 1)->first();
-        // if (!$category) {
-        //     abort(404);
-        // } else {
-        //     $this->category = $category;
-        //     $this->products = Product::where('category_id', $category->id)->where('status', 1)->paginate(10);
-        // }
     }
 }

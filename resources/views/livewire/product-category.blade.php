@@ -5,6 +5,7 @@
         class="leading-relaxed font-primary font-extrabold text-4xl text-center text-black mt-4 py-2 sm:py-4">
         {{$category->name}}</h1>
     </div>
+    @if($products->count())
     <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
       @foreach($products as $product)
       <a class="h-120 w-72 sm:w-96 md:w-64 rounded shadow-lg mx-auto border border-palette-lighter" href="{{route('product.detail',$product->slug)}}">
@@ -36,6 +37,9 @@
       </a>
       @endforeach
     </div>
+    @else
+    <p class="py-2 my-10 max-w-6xl mx-auto text-xl">Hiện chưa có sản phẩm thuộc danh mục này.</p>
+    @endif
       {{ $products->links() }}
   </div>
 </main>
