@@ -10,11 +10,6 @@ use Livewire\WithPagination;
 class ProductCategory extends Component
 {
     use WithPagination;
-    /** @var int */
-    public $category_id;
-
-    /** @var array */
-    public $products_data;
 
     /** @var array */
     public $category;

@@ -4,7 +4,7 @@
     x-data="{ open: false }">
     <div id="notification-icon relative">
       <button @click="open = !open"
-        class="relative p-2 bg-black text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-red-500 focus:outline-none focus:text-red-500 focus:bg-gray-800">
+        class="relative inline-flex items-center py-2 px-6 bg-black text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-red-500 focus:outline-none focus:text-red-500 focus:bg-gray-800">
         <svg xmlns="http://www.w3.org/2000/svg" class="svg-inline--fa fa-shopping-cart fa-w-18 text-white w-8 m-auto"
           viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"

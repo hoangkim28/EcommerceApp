@@ -32,7 +32,7 @@
       </div>
       <div class="flex flex-col justify-between h-full w-full md:w-1/2 lg:w-3/5 max-w-xl mx-auto space-y-4 min-h-128">
         <div class=" font-primary">
-          <a class="text-black text-xl font-primary font-semibold leading-relaxed"
+          <a class="text-black text-xl font-primary font-semibold leading-relaxed underline"
             href="/">{{$product->category->name}}</a>
           <h1 class="leading-relaxed font-extrabold text-2xl text-black py-2 sm:py-4">
             {{$product->name}}
@@ -122,7 +122,7 @@
         <div class="w-full">
           <div class="flex flex-row space-x-1 md:space-x-6">
             <a wire:click="addCart"
-              class="cursor-pointer pt-3 pb-2 bg-black text-white w-full md:w-1/2 mt-2 rounded-sm font-primary font-semibold text-xl flex justify-center items-center  hover:bg-red-500"
+              class="cursor-pointer pt-3 pb-2 bg-red-500 text-white w-full md:w-1/2 mt-2 rounded-sm font-primary font-semibold text-xl flex justify-center items-center  hover:bg-black"
               aria-label="cart-button">
               Thêm giỏ hàng
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart"
@@ -134,6 +134,10 @@
               </svg>
             </a>
           </div>
+
+            <div wire:loading wire:target="addCart" class="text-black animate-pulse py-2 text-red-500 text-lg">
+                Đang thêm vào giỏ hàng...
+            </div>
         </div>
       </div>
     </div>
