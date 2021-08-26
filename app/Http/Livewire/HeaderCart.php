@@ -6,9 +6,13 @@ use Livewire\Component;
 
 class HeaderCart extends Component
 {
+    /** @var int */
     public $cartTotal;
+
+    /** @var int */
     public $cartTotalPrice;
 
+/** @var array */
     public $cartContent;
 
     protected $listeners = ['updateHeaderCartCount' => 'updateCartCount'];
@@ -24,11 +28,11 @@ class HeaderCart extends Component
         $this->cartContent = \Cart::content();
         $this->cartTotalPrice = \Cart::priceTotal();
     }
-    
+
     public function updateCartCount()
     {
-      $this->cartTotal = \Cart::count();
-      $this->cartContent = \Cart::content();
-      $this->cartTotalPrice = \Cart::priceTotal();
+        $this->cartTotal = \Cart::count();
+        $this->cartContent = \Cart::content();
+        $this->cartTotalPrice = \Cart::priceTotal();
     }
 }

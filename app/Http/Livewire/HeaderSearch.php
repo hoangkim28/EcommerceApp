@@ -7,8 +7,10 @@ use App\Models\Product;
 
 class HeaderSearch extends Component
 {
+    /** @var string */
     public $keyword;
 
+    /** @var array */
     public $products;
 
     public function render()

@@ -6,11 +6,12 @@ use Livewire\Component;
 
 class CartDeleteItem extends Component
 {
-    public $rowId = [];
+    /** @var string */
+    public $rowId = '';
 
     protected $listeners = [
-      'confirmed_delete'
-  ];
+        'confirmed_delete',
+    ];
 
     public function render()
     {
@@ -19,25 +20,25 @@ class CartDeleteItem extends Component
 
     public function mount($rowId)
     {
-      $this->rowId = $rowId;
+        $this->rowId = $rowId;
     }
 
     public function remove()
     {
-      $cartItem = \Cart::get($this->rowId);
-      $this->confirm('Xác nhận xóa '.$cartItem->name, [
-        'toast' => false,
-        'position' => 'center',
-        'showConfirmButton' => true,
-        'cancelButtonText' => 'Nope',
-        'onConfirmed' => 'confirmed_delete',
-        'onCancelled' => 'cancelled'
-      ]);
+        $cartItem = \Cart::get($this->rowId);
+        $this->confirm('Xác nhận xóa ' . $cartItem->name, [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Nope',
+            'onConfirmed' => 'confirmed_delete',
+            'onCancelled' => 'cancelled',
+        ]);
     }
     public function confirmed_delete()
-    {      
-      \Cart::remove($this->rowId);
-      $this->emit('updateHeaderCartCount');
-      $this->emit('updateCartContent');
+    {
+        \Cart::remove($this->rowId);
+        $this->emit('updateHeaderCartCount');
+        $this->emit('updateCartContent');
     }
 }

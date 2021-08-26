@@ -11,10 +11,19 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
+  /** @var string */
     public $name;
+
+    /** @var string */
     public $email;
+
+    /** @var int */
     public $phone_number;
+
+    /** @var string */
     public $address;
+
+    /** @var array */
     protected $usr;
 
     protected $rules = [

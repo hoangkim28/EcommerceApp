@@ -8,16 +8,27 @@ use Livewire\Component;
 
 class ProductDetail extends Component
 {
+    /** @var array */
     public $product;
+
+    /** @var array */
     public $product_sku;
+
+    /** @var array */
     public $related_product;
 
+    /** @var int */
     public $size_id, $color_id;
+
+    /** @var string */
     public $size_name, $color_name;
 
+    /** @var int */
     public $quantity;
-    public $product_cart_quantity;
 
+    /** @var int */
+    public $product_cart_quantity;
+/** @var int */
     public $price, $promotion_price;
 
     public function render()
@@ -28,8 +39,8 @@ class ProductDetail extends Component
     public function mount($slug)
     {
         $data = Product::where('slug', $slug)->first();
-        if(!$data){
-          abort('404');
+        if (!$data) {
+            abort('404');
         }
         $this->product = $data;
         $this->related_product = Product::where('category_id', $data->category_id)
@@ -56,25 +67,25 @@ class ProductDetail extends Component
         //Kiễm tra - Đã chọn màu sắc và kích thước hay chưa
         if ($size_select && $color_select) {
             $sku_id = $this->product->product_skus
-                    ->where('size_id', $size_select)
-                    ->where('color_id', $color_select)
-                    ->first();
+                ->where('size_id', $size_select)
+                ->where('color_id', $color_select)
+                ->first();
             \Cart::add([
-              'id' => $sku_id,
-              'name' => $product->name,
-              'qty' => $this->product_cart_quantity,
-              'price' => $this->product_order_price(),
-              'weight' => 0,
-              'options' => [
-                  'size' => $size_select,
-                  'size_name' => $size_name,
-                  'color' => $color_select,
-                  'color_name' => $color_name,
-                  'image' => $product->image,
-                  'slug' => $product->slug,
-                  'sku_id' => $sku_id->id,
-            ]]);
-                
+                'id' => $sku_id,
+                'name' => $product->name,
+                'qty' => $this->product_cart_quantity,
+                'price' => $this->product_order_price(),
+                'weight' => 0,
+                'options' => [
+                    'size' => $size_select,
+                    'size_name' => $size_name,
+                    'color' => $color_select,
+                    'color_name' => $color_name,
+                    'image' => $product->image,
+                    'slug' => $product->slug,
+                    'sku_id' => $sku_id->id,
+                ]]);
+
             // listeners - header cart
             $this->emit('updateHeaderCartCount');
             $this->alert('success', 'Thêm ' . $this->product_cart_quantity . ' ' . $product->name) . ' vào giỏ hàng.';
@@ -124,12 +135,12 @@ class ProductDetail extends Component
     }
     public function product_order_price()
     {
-      $product_order_price = 0;
-      if($this->promotion_price){
-        $product_order_price = $this->promotion_price;
-      }else{
-        $product_order_price = $this->price;
-      }
-      return $product_order_price;
+        $product_order_price = 0;
+        if ($this->promotion_price) {
+            $product_order_price = $this->promotion_price;
+        } else {
+            $product_order_price = $this->price;
+        }
+        return $product_order_price;
     }
 }
