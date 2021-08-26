@@ -37,7 +37,6 @@ class CartDeleteItem extends Component
     public function confirmed_delete()
     {      
       \Cart::remove($this->rowId);
-      $this->emit('cartUpdated');
       $this->emit('updateHeaderCartCount');
       $this->emit('updateCartContent');
     }
