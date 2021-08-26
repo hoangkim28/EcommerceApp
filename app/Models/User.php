@@ -49,6 +49,6 @@ class User extends \TCG\Voyager\Models\User
 
     public function getDefaultAddress()
     {
-        return $this->addresses()->where($this->default, '=', true);
+        return $this->addresses()->where('default', 1)->first();
     }
 }

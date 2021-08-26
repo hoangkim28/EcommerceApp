@@ -9,6 +9,7 @@
       <a href="#" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="px-2 hover:bg-white hover:text-black">Đăng xuất</a>
       <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
+      </form>
       @else
       <a href="{{route('login')}}" class="pl-2 pr-1 hover:bg-white hover:text-black">Đăng nhập</a>
       <span>|</span>

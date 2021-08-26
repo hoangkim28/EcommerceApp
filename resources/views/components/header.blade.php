@@ -13,7 +13,7 @@
       @if($category->children->count())
       <div x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown=false"
         @click.away="dropdown=false"
-        class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
+        class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer hover:text-gray-700 hover:border-gray-600 focus:outline-none focus:text-gray-700 focus:border-gray-600">
         <span class="font-primary text-lg">{{$category->name}}</span>
         <svg class="w-5 h-5 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"
@@ -45,7 +45,7 @@
         </div>
       </div>
       @else
-      <a href="{{route('product.category',$category->slug)}}" class="inline-flex items-center px-1 pt-1 font-primary text-lg leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
+      <a href="{{route('product.category',$category->slug)}}" class="inline-flex items-center px-1 pt-1 font-primary text-lg leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-600 focus:outline-none focus:text-gray-700 focus:border-gray-600">
         {{$category->name}}
       </a>
       @endif
