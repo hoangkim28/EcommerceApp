@@ -55,10 +55,12 @@ class ProductDetail extends Component
         $product = $this->product;
         //Kiễm tra - Đã chọn màu sắc và kích thước hay chưa
         if ($size_select && $color_select) {
-            $cartId = $this->product->id . $color_select . $color_select;
-            
+            $sku_id = $this->product->product_skus
+                    ->where('size_id', $size_select)
+                    ->where('color_id', $color_select)
+                    ->first();
             \Cart::add([
-              'id' => $cartId,
+              'id' => $sku_id,
               'name' => $product->name,
               'qty' => $this->product_cart_quantity,
               'price' => $this->product_order_price(),
@@ -70,6 +72,7 @@ class ProductDetail extends Component
                   'color_name' => $color_name,
                   'image' => $product->image,
                   'slug' => $product->slug,
+                  'sku_id' => $sku_id->id,
             ]]);
                 
             // listeners - header cart

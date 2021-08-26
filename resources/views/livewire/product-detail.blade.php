@@ -79,7 +79,7 @@
               <legend class="sr-only">
                 Chọn kích thước
               </legend>
-              <div class="grid grid-cols-4 gap-4 sm:grid-cols-6 lg:grid-cols-8">
+              <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
 
                 @foreach($product_sku as $key => $sku)
                 <label @if($sku->quantity !== 0)wire:click="selectSize({{$sku->size_id}})" @endif class="group relative

@@ -31,4 +31,9 @@ class Cart extends Component
       $this->cartContent = \Cart::content()->toArray();
       $this->cartTotalPrice = \Cart::priceTotal();
     }
+
+    public function checkout()
+    {
+      return redirect()->route('checkout');
+    }
 }
