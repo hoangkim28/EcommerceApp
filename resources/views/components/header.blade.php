@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-20 bg-white">
-  <div class="flex items-center justify-between mx-auto max-w-6xl px-4 pb-2 pt-3 md:pt-4">
+  <div class="flex items-center justify-between mx-auto max-w-6xl px-4 xl:px-0 pb-2 pt-3 md:pt-4">
     <a class=" cursor-pointer" href="/">
       <h1 class="flex no-underline mr-2">
         <img alt="logo" class="h-10 w-10 mr-1 object-contain" src="{{voyager::image(setting('site.logo'))}}">

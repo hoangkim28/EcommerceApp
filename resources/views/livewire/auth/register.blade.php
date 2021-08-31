@@ -1,4 +1,4 @@
-@section('title', 'Create a new account')
+@section('title', 'Đăng ký tài khoản mới')
 
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -6,14 +6,14 @@
             <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
         </a>
 
-        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Create a new account
+        <h2 class="mt-6 text-4xl font-extrabold font-primary text-center text-gray-900 leading-9">
+            Đăng ký tài khoản mới
         </h2>
 
-        <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
-            Or
-            <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                sign in to your account
+        <p class="mt-2 text-sm text-center font-primary text-gray-600 leading-5 max-w">
+            Hoặc
+            <a href="{{ route('login') }}" class="font-medium font-primary text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                đăng nhập
             </a>
         </p>
     </div>
@@ -22,8 +22,8 @@
         <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
             <form wire:submit.prevent="register">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
-                        Name
+                    <label for="name" class="block text-sm font-medium font-primary text-gray-700 leading-5">
+                        Họ và Tên
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -31,13 +31,13 @@
                     </div>
 
                     @error('name')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-red-600 font-primary">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-6">
-                    <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
+                    <label for="email" class="block text-sm font-medium font-primary text-gray-700 leading-5">
+                        Email
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -45,13 +45,13 @@
                     </div>
 
                     @error('email')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-red-600 font-primary">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                        Password
+                    <label for="password" class="block text-sm font-medium font-primary text-gray-700 leading-5">
+                        Mật khẩu
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -59,13 +59,13 @@
                     </div>
 
                     @error('password')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-red-600 font-primary">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 leading-5">
-                        Confirm Password
+                    <label for="password_confirmation" class="block text-sm font-medium font-primary text-gray-700 leading-5">
+                        Nhập lại mật khẩu
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -75,8 +75,8 @@
 
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
-                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Register
+                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium font-primary text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            Đăng ký
                         </button>
                     </span>
                 </div>
