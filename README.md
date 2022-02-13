@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Screnshort
+## Screenshot
 
 ![Screnshort](https://raw.githubusercontent.com/hoangkim28/EcommerceApp/main/storage/app/public/capture.jpeg)
 
